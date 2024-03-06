@@ -22,5 +22,3 @@ class CareerPage(BasePage):
     def press_search_button(self):
         search_button = self.find_element(*self.locator.SEARCH_BUTTON_CAREER)
         search_button.click()
-
-    #test

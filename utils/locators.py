@@ -42,4 +42,3 @@ class JobOfferLocators(object):
     COVER_LETTER_FILE_PATH = "C:/Users/krtarut/Downloads/dummyPdfCover.pdf"
 
     SUBMIT_APPLICATION_BUTTON = (By.XPATH, "//input[@id='submit_app']")
-# test

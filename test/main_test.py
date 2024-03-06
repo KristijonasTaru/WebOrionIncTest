@@ -48,4 +48,3 @@ class MainTest(BaseTest, unittest.TestCase):
         self.assertTrue(element_displayed, "The 'Error message' element is not visible")
 
         self.driver.switch_to.default_content()
-# test
