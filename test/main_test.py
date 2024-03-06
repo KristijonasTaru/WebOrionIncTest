@@ -26,7 +26,6 @@ class MainTest(BaseTest, unittest.TestCase):
         career_page = CareerPage(self.driver)
         career_page.open("careers/")
         career_page.accept_cookies()
-        # career_page.scroll_down_html()
         career_page.open_dropdown()
         career_page.pick_vilnius_location()
         career_page.press_search_button()

@@ -1,4 +1,3 @@
-from selenium.webdriver import Keys
 from main.base_page import BasePage
 from utils.locators import CareerPageLocators
 
@@ -7,11 +6,6 @@ class CareerPage(BasePage):
     def __init__(self, driver):
         self.locator = CareerPageLocators
         BasePage.__init__(self, driver)
-
-    # def scroll_down_html(self):
-    #     html = self.find_element(*self.locator.HTML)
-    #     html.send_keys(Keys.PAGE_DOWN)
-    #     self.wait_element(self.locator.DROPDOWN_LOCATIONS)
 
     def open_dropdown(self):
         self.wait_element(self.locator.DROPDOWN_LOCATIONS)
