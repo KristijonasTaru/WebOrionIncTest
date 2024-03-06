@@ -16,3 +16,5 @@ class MainPage(BasePage):
         self.wait_element(self.locator.CAREER_LINK)
         career_link = self.find_element(*self.locator.CAREER_LINK)
         career_link.click()
+
+    # test

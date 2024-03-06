@@ -46,3 +46,4 @@ class BasePage(object):
 
     def switch_to_default_content(self):
         self.driver.switch_to.default_content()
+# test
