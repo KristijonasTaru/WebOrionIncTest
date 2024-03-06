@@ -10,7 +10,7 @@ from test.base_test import BaseTest
 
 
 class MainTest(BaseTest, unittest.TestCase):
-    def test_hover_on_company_link_and_click_career_link(self):
+    def test_a_hover_on_company_link_and_click_career_link(self):
         main_page = MainPage(self.driver)
         main_page.open("/")
         main_page.accept_cookies()
@@ -22,20 +22,20 @@ class MainTest(BaseTest, unittest.TestCase):
         expected_result = 'Find Open Jobs'
         self.assertEqual(expected_result, actual_results, "The 'Find Open Jobs' element is not visible")
 
-    def test_move_to_job_offers(self):
+    def test_b_move_to_job_offers(self):
         career_page = CareerPage(self.driver)
         career_page.open("careers/")
         career_page.accept_cookies()
-        career_page.scroll_down_html()
+        # career_page.scroll_down_html()
         career_page.open_dropdown()
         career_page.pick_vilnius_location()
         career_page.press_search_button()
 
         actual_result = self.driver.find_element(By.XPATH, "//h1[@class='article-title h1']").text
         expected_result = "Careers"
-        self.assertEqual(expected_result, actual_result, "Test failed")
+        self.assertEqual(expected_result, actual_result, "The 'Careers' element is not visible")
 
-    def test_apply_for_job(self):
+    def test_c_apply_for_job(self):
         job_offer_page = JobOfferPage(self.driver)
         job_offer_page.open("careers/jobs/?_job_location=lithuania")
         job_offer_page.accept_cookies()
@@ -46,12 +46,6 @@ class MainTest(BaseTest, unittest.TestCase):
             (By.XPATH, "//iframe[@id='grnhse_iframe']")))
         actual_result = self.driver.find_element(By.XPATH, "//div[@id='validate_resume_error']")
         element_displayed = actual_result.is_displayed()
-        self.assertTrue(element_displayed, "Test failed")
+        self.assertTrue(element_displayed, "The 'Error message' element is not visible")
 
         self.driver.switch_to.default_content()
-
-        # self.assertTrue(BasePage.find_element())
-        # Assert that career page is loaded
-        # You can add assertions here to verify that you are on the expected page
-        # For example:
-        # self.assertIn("Careers", self.driver.title)

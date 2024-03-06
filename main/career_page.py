@@ -8,12 +8,13 @@ class CareerPage(BasePage):
         self.locator = CareerPageLocators
         BasePage.__init__(self, driver)
 
-    def scroll_down_html(self):
-        html = self.find_element(*self.locator.HTML)
-        html.send_keys(Keys.PAGE_DOWN)
-        self.wait_element(self.locator.DROPDOWN_LOCATIONS)
+    # def scroll_down_html(self):
+    #     html = self.find_element(*self.locator.HTML)
+    #     html.send_keys(Keys.PAGE_DOWN)
+    #     self.wait_element(self.locator.DROPDOWN_LOCATIONS)
 
     def open_dropdown(self):
+        self.wait_element(self.locator.DROPDOWN_LOCATIONS)
         dropdown = self.find_element(*self.locator.DROPDOWN_LOCATIONS)
         dropdown.click()
         self.wait_element(self.locator.DROPDOWN_MENU)
