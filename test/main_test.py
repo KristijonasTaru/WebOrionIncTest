@@ -1,16 +1,26 @@
+import unittest
+
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from utils.locators import *
 from main.career_page import CareerPage
 from main.job_offer_page import JobOfferPage
 from main.main_page import MainPage
 from test.base_test import BaseTest
 
 
-class MainTest(BaseTest):
+class MainTest(BaseTest, unittest.TestCase):
     def test_hover_on_company_link_and_click_career_link(self):
         main_page = MainPage(self.driver)
         main_page.open("/")
         main_page.accept_cookies()
         main_page.hover_on_company_link()
         main_page.click_on_career()
+
+        # change expected_result to fail the test
+        actual_results = self.driver.find_element(By.XPATH, "//h3[normalize-space()='Find Open Jobs']").text
+        expected_result = 'Find Open Jobs'
+        self.assertEqual(expected_result, actual_results, "The 'Find Open Jobs' element is not visible")
 
     def test_move_to_job_offers(self):
         career_page = CareerPage(self.driver)
@@ -21,13 +31,26 @@ class MainTest(BaseTest):
         career_page.pick_vilnius_location()
         career_page.press_search_button()
 
+        actual_result = self.driver.find_element(By.XPATH, "//h1[@class='article-title h1']").text
+        expected_result = "Careers"
+        self.assertEqual(expected_result, actual_result, "Test failed")
+
     def test_apply_for_job(self):
         job_offer_page = JobOfferPage(self.driver)
         job_offer_page.open("careers/jobs/?_job_location=lithuania")
         job_offer_page.accept_cookies()
         job_offer_page.move_to_first_offer()
-        job_offer_page.apply_iframe_info()
+        job_offer_page.apply_iframe_info_and_submit_filled_form()
 
+        WebDriverWait(self.driver, 5).until(EC.frame_to_be_available_and_switch_to_it(
+            (By.XPATH, "//iframe[@id='grnhse_iframe']")))
+        actual_result = self.driver.find_element(By.XPATH, "//div[@id='validate_resume_error']")
+        element_displayed = actual_result.is_displayed()
+        self.assertTrue(element_displayed, "Test failed")
+
+        self.driver.switch_to.default_content()
+
+        # self.assertTrue(BasePage.find_element())
         # Assert that career page is loaded
         # You can add assertions here to verify that you are on the expected page
         # For example:
