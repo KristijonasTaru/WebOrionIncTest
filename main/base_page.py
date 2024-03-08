@@ -27,7 +27,7 @@ class BasePage(object):
         try:
             WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located(*locator))
         except TimeoutException:
-            print("Element not found ")
+            print("Element not found")
             self.driver.quit()
 
     def accept_cookies(self):
