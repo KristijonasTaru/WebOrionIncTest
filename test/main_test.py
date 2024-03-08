@@ -1,8 +1,8 @@
 import unittest
 
+from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from utils.locators import *
 from main.career_page import CareerPage
 from main.job_offer_page import JobOfferPage
 from main.main_page import MainPage
@@ -41,6 +41,7 @@ class MainTest(BaseTest, unittest.TestCase):
         job_offer_page.move_to_first_offer()
         job_offer_page.apply_iframe_info_and_submit_filled_form()
 
+        # assertFalse to fail test
         WebDriverWait(self.driver, 5).until(EC.frame_to_be_available_and_switch_to_it(
             (By.XPATH, "//iframe[@id='grnhse_iframe']")))
         actual_result = self.driver.find_element(By.XPATH, "//div[@id='validate_resume_error']")
@@ -48,3 +49,4 @@ class MainTest(BaseTest, unittest.TestCase):
         self.assertTrue(element_displayed, "The 'Error message' element is not visible")
 
         self.driver.switch_to.default_content()
+

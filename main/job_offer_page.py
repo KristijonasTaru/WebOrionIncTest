@@ -40,6 +40,7 @@ class JobOfferPage(BasePage):
             email_input = first_name_input + last_name_input + fake_generator.email_domain()
             phone_input = fake_generator.phone_number()
             linked_in_input = "//linked/" + first_name_input + last_name_input + email_input + phone_input
+            linked_in_input = linked_in_input.replace(" ", "")
 
             # fill form
             first_name = self.find_element(*self.locator.FIRST_NAME)
@@ -57,10 +58,11 @@ class JobOfferPage(BasePage):
             linked_in = self.find_element(*self.locator.LINKED_IN_PROFILE)
             linked_in.send_keys(linked_in_input)
 
-            self.find_element(*self.locator.ATTACH_CV).send_keys("C:/Users/krtarut/Downloads/dummyPdfCv.pdf")
+            cv_send_keys = self.find_element(*self.locator.ATTACH_CV)
+            cv_send_keys.send_keys(JobOfferLocators.CV_FILE_PATH)
 
             (self.find_element(*self.locator.ATTACH_COVER_LETTER)
-                .send_keys("C:/Users/krtarut/Downloads/dummyPdfCover.pdf"))
+                .send_keys(JobOfferLocators.COVER_LETTER_FILE_PATH))
 
             accept_terms = self.find_element(*self.locator.AGREE_CHECKBOX)
             accept_terms.click()
