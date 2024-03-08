@@ -19,7 +19,7 @@ class MainTest(BaseTest, unittest.TestCase):
 
         # change expected_result to fail the test
         actual_results = self.driver.find_element(By.XPATH, "//h3[normalize-space()='Find Open Jobs']").text
-        expected_result = 'Find Open Jobs '
+        expected_result = 'Find Open Jobs'
         self.assertEqual(expected_result, actual_results, "The 'Find Open Jobs' element is not visible")
 
     def test_b_move_to_job_offers(self):
