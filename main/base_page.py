@@ -47,6 +47,3 @@ class BasePage(object):
     def switch_to_default_content(self):
         self.driver.switch_to.default_content()
 
-    def upload_file(self, locator, file_path):
-        file_input = self.find_element(locator)
-        file_input.send_keys(file_path)
